@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./assets/css/styles.css">
+  <link rel="stylesheet" href="./assets/css/mobile-tool.css">
   <script type="module" src="./assets/js/main.js"></script>
 </head>
 <body>
@@ -63,11 +64,23 @@
       <div class="dashboard-status"><span class="pulse"></span> ACCESS GRANTED <span class="status-divider">/</span> HEXAGON WIRE GUARDIAN ACTIVE</div>
       <div class="section-label">TOOLKIT MODULES <span>EXPANDABLE WORKSPACE</span></div>
       <div class="tool-grid" id="tool-grid">
-        <article class="tool-card"><span class="tool-symbol">⌘</span><span class="tool-index">MODULE 001</span><h3>Tool slot one</h3><p>Your first toolkit module can be added here.</p><span class="module-state">READY FOR CONFIGURATION</span></article>
+        <article class="tool-card tool-card-action" id="mobile-tool-card" role="button" tabindex="0" aria-label="Open Mobile Number Intelligence"><span class="tool-symbol">⌘</span><span class="tool-index">MODULE 001</span><h3>Mobile Number Intelligence</h3><p>Manage supplied German Telekom contacts and create WhatsApp links for consented numbers.</p><span class="module-state">OPEN MODULE →</span></article>
         <article class="tool-card"><span class="tool-symbol">⌬</span><span class="tool-index">MODULE 002</span><h3>Tool slot two</h3><p>Keep your utilities organized in one workspace.</p><span class="module-state">READY FOR CONFIGURATION</span></article>
         <article class="tool-card"><span class="tool-symbol">⟡</span><span class="tool-index">MODULE 003</span><h3>Tool slot three</h3><p>Additional modules can be added as the project grows.</p><span class="module-state">READY FOR CONFIGURATION</span></article>
       </div>
-      <div class="dashboard-note">NO ACTIVE TOOLS CONFIGURED <span>·</span> MODULES WILL APPEAR HERE</div>
+      <div class="dashboard-note">MODULE 001 ACTIVE <span>·</span> ADDITIONAL MODULES CAN BE CONFIGURED</div>
+      <section id="mobile-tool-view" class="mobile-tool-view hidden" aria-labelledby="mobile-tool-title">
+        <button type="button" id="mobile-tool-back" class="logout-btn mobile-back">← BACK TO TOOLKIT</button>
+        <div class="mobile-tool-heading"><div class="eyebrow"><span></span> MODULE 001 / CONTACT WORKSPACE</div><h2 id="mobile-tool-title">MOBILE NUMBER <span>INTELLIGENCE</span></h2><p>Verarbeite ausschließlich Nummern, die du selbst bereitgestellt hast und für deren Kontaktaufnahme eine Einwilligung vorliegt.</p></div>
+        <div class="mobile-tool-panel"><div class="mobile-config-grid">
+          <div><label>COUNTRY</label><div class="fixed-value">Germany <span>+49</span></div></div>
+          <div><label>PROVIDER / PREFIX</label><div class="fixed-value">Telekom <span>0151</span></div></div>
+          <div><label for="mobile-quantity">MAX. CONTACTS TO PROCESS</label><input id="mobile-quantity" type="number" min="1" max="500" value="1"></div>
+        </div>
+        <label for="mobile-contacts">YOUR CONTACT NUMBERS <span class="label-note">one per line · +49 151 / 0151</span></label><textarea id="mobile-contacts" rows="7" placeholder="+49 151 1234567&#10;0151 2345678"></textarea>
+        <label class="consent-check"><input id="mobile-consent" type="checkbox"> I confirm these contacts were provided to me and have consented to being contacted on WhatsApp.</label>
+        <button type="button" id="mobile-process" class="submit-btn mobile-process"><span>VALIDATE CONTACTS & CREATE LINKS</span><span>→</span></button><p id="mobile-feedback" class="mobile-feedback" role="status" aria-live="polite"></p><div id="mobile-results" class="mobile-results" aria-live="polite"></div></div>
+      </section>
     </section>
 
     <footer class="site-footer"><span>© 2026 HEXAGON INTELLIGENCE TOOLKIT</span><span>SECURED BY <strong>HEXAGON WIRE GUARDIAN</strong></span></footer>
