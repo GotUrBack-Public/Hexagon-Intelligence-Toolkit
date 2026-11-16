@@ -1,8 +1,8 @@
 const normalizeTelekom151 = (raw) => {
-  let value = raw.trim().replace(/[\\s().-]/g, "");
+  let value = raw.trim().replace(/[\s().-]/g, "");
   if (value.startsWith("+49")) value = "0" + value.slice(3);
   else if (value.startsWith("0049")) value = "0" + value.slice(4);
-  return /^0151\\d{7}$/.test(value) ? "49" + value.slice(1) : null;
+  return /^0151\d{7}$/.test(value) ? "49" + value.slice(1) : null;
 };
 
 const createSyntheticMobileTestNumber = () => {
@@ -24,7 +24,7 @@ export function initializeMobileNumberIntelligence() {
   back?.addEventListener("click", close);
   document.querySelector("#mobile-process")?.addEventListener("click", () => {
     const quantity = Number(document.querySelector("#mobile-quantity").value);
-    const raw = document.querySelector("#mobile-contacts").value.split(/\\r?\\n/).map(s => s.trim()).filter(Boolean);
+    const raw = document.querySelector("#mobile-contacts").value.split(/\r?\n/).map(s => s.trim()).filter(Boolean);
     const consent = document.querySelector("#mobile-consent").checked;
     const feedback = document.querySelector("#mobile-feedback");
     const results = document.querySelector("#mobile-results");
