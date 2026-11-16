@@ -1,8 +1,14 @@
 const normalizeTelekom151 = (raw) => {
-  let value = raw.trim().replace(/[\s().-]/g, "");
+  let value = raw.trim().replace(/[\\s().-]/g, "");
   if (value.startsWith("+49")) value = "0" + value.slice(3);
   else if (value.startsWith("0049")) value = "0" + value.slice(4);
-  return /^0151\d{7}$/.test(value) ? "49" + value.slice(1) : null;
+  return /^0151\\d{7}$/.test(value) ? "49" + value.slice(1) : null;
+};
+
+const createSyntheticMobileTestNumber = () => {
+  const suffix = String(Math.floor(Math.random() * 10000000)).padStart(7, "0");
+  // TEST prefix deliberately makes this an identifier, not a dialable phone number.
+  return "TEST-+49151" + suffix;
 };
 
 export function initializeMobileNumberIntelligence() {
@@ -18,13 +24,25 @@ export function initializeMobileNumberIntelligence() {
   back?.addEventListener("click", close);
   document.querySelector("#mobile-process")?.addEventListener("click", () => {
     const quantity = Number(document.querySelector("#mobile-quantity").value);
-    const raw = document.querySelector("#mobile-contacts").value.split(/\r?\n/).map(s => s.trim()).filter(Boolean);
+    const raw = document.querySelector("#mobile-contacts").value.split(/\\r?\\n/).map(s => s.trim()).filter(Boolean);
     const consent = document.querySelector("#mobile-consent").checked;
     const feedback = document.querySelector("#mobile-feedback");
     const results = document.querySelector("#mobile-results");
     results.replaceChildren();
     if (!Number.isInteger(quantity) || quantity < 1 || quantity > 500) { feedback.textContent = "Quantity must be between 1 and 500."; return; }
-    if (!raw.length) { feedback.textContent = "Enter your own contact numbers first. Random real phone numbers are not generated."; return; }
+
+    if (!raw.length) {
+      for (let index = 0; index < quantity; index++) {
+        const row = document.createElement("div"); row.className = "mobile-result";
+        const label = document.createElement("span"); label.textContent = "TEST DATA " + String(index + 1).padStart(3, "0");
+        const number = document.createElement("span"); number.textContent = createSyntheticMobileTestNumber();
+        row.append(label, number);
+        results.append(row);
+      }
+      feedback.textContent = quantity + " synthetic test identifier(s) generated. TEST-prefixed values are not phone numbers and have no WhatsApp links.";
+      return;
+    }
+
     if (raw.length > quantity) { feedback.textContent = "You entered " + raw.length + " contacts; increase the limit or remove entries."; return; }
     if (!consent) { feedback.textContent = "Confirm consent before creating WhatsApp links."; return; }
     let valid = 0;
