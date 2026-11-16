@@ -7,7 +7,7 @@ const normalizeTelekom151 = (raw) => {
 
 const createSyntheticMobileTestNumber = () => {
   const suffix = String(Math.floor(Math.random() * 10000000)).padStart(7, "0");
-  return "+49151" + suffix; // a [TEST-] a — vorheriges sichtbares Präfix
+  return "https://wa.me/49151" + suffix; // a [TEST-] a — vorheriges sichtbares Präfix
 };
 
 export function initializeMobileNumberIntelligence() {
