@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#070b14">
+  <meta name="description" content="Hexagon Intelligence Toolkit — secure access terminal.">
+  <title>Hexagon Intelligence Toolkit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./script.js" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <main class="shell">
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="Hexagon home">
+        <span class="brand-mark">⬡</span><span class="brand-name">HEXAGON<span class="brand-sub">INTELLIGENCE SYSTEMS</span></span>
+      </a>
+      <div class="system-state"><span class="pulse"></span> SYSTEM READY</div>
+    </header>
+
+    <section id="login-view" class="login-layout">
+      <div class="intro">
+        <div class="eyebrow"><span></span> PRIVATE TOOL ENVIRONMENT</div>
+        <h1>INTELLIGENCE<br><span>TOOLKIT</span></h1>
+        <p class="intro-copy">A unified workspace for your digital operations. Authenticate to access your toolkit.</p>
+        <div class="security-stamp"><span class="stamp-icon">⬡</span><span><strong>SECURED BY</strong><br>HEXAGON WIRE GUARDIAN</span></div>
+      </div>
+
+      <section class="auth-card" aria-labelledby="access-title">
+        <div class="card-topline"><span>ACCESS TERMINAL</span><span class="terminal-code">HIT / 001</span></div>
+        <div class="card-heading">
+          <div class="card-icon">⌑</div>
+          <div><h2 id="access-title">Welcome back</h2><p>Enter your authorization key to continue.</p></div>
+        </div>
+        <form id="login-form" novalidate>
+          <label for="access-key">ACCESS KEY</label>
+          <div class="input-wrap"><span class="input-prefix">⌑</span><input id="access-key" name="key" type="password" autocomplete="off" placeholder="HEX-XXXX-XXXX-XXXX-XXXX" spellcheck="false" required><button class="reveal" type="button" id="toggle-key" aria-label="Show access key">SHOW</button></div>
+
+          <div class="captcha-panel">
+            <div class="captcha-heading"><span class="shield">⬡</span><div><strong>HEXAGON WIRE GUARDIAN</strong><small>BOT PROTECTION · HUMAN VERIFICATION</small></div><span class="captcha-live">ACTIVE</span></div>
+            <div class="captcha-question"><span>SECURITY CHALLENGE</span><strong id="captcha-question">—</strong></div>
+            <label for="captcha-answer">YOUR ANSWER</label>
+            <input id="captcha-answer" class="captcha-input" inputmode="numeric" pattern="[0-9]*" autocomplete="off" placeholder="Enter the result" required>
+            <button type="button" class="refresh-challenge" id="refresh-captcha">↻ NEW CHALLENGE</button>
+          </div>
+
+          <p id="feedback" class="feedback" role="status" aria-live="polite"></p>
+          <button class="submit-btn" type="submit"><span>AUTHENTICATE</span><span>→</span></button>
+        </form>
+        <div class="card-foot"><span class="lock-dot"></span> ENCRYPTED CLIENT-SIDE CHECK</div>
+      </section>
+    </section>
+
+    <section id="dashboard-view" class="dashboard hidden">
+      <div class="dashboard-head">
+        <div><div class="eyebrow"><span></span> AUTHENTICATED SESSION</div><h1>COMMAND <span>CENTER</span></h1><p>Welcome to your Hexagon workspace.</p></div>
+        <button id="logout" class="logout-btn">LOG OUT ↗</button>
+      </div>
+      <div class="dashboard-status"><span class="pulse"></span> ACCESS GRANTED <span class="status-divider">/</span> HEXAGON WIRE GUARDIAN ACTIVE</div>
+      <div class="section-label">TOOLKIT MODULES <span>EXPANDABLE WORKSPACE</span></div>
+      <div class="tool-grid" id="tool-grid">
+        <article class="tool-card"><span class="tool-symbol">⌘</span><span class="tool-index">MODULE 001</span><h3>Tool slot one</h3><p>Your first toolkit module can be added here.</p><span class="module-state">READY FOR CONFIGURATION</span></article>
+        <article class="tool-card"><span class="tool-symbol">⌬</span><span class="tool-index">MODULE 002</span><h3>Tool slot two</h3><p>Keep your utilities organized in one workspace.</p><span class="module-state">READY FOR CONFIGURATION</span></article>
+        <article class="tool-card"><span class="tool-symbol">⟡</span><span class="tool-index">MODULE 003</span><h3>Tool slot three</h3><p>Additional modules can be added as the project grows.</p><span class="module-state">READY FOR CONFIGURATION</span></article>
+      </div>
+      <div class="dashboard-note">NO ACTIVE TOOLS CONFIGURED <span>·</span> MODULES WILL APPEAR HERE</div>
+    </section>
+
+    <footer class="site-footer"><span>© 2026 HEXAGON INTELLIGENCE TOOLKIT</span><span>SECURED BY <strong>HEXAGON WIRE GUARDIAN</strong></span></footer>
+  </main>
+</body>
+</html>
