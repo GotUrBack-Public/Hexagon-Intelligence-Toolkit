@@ -7,8 +7,7 @@ const normalizeTelekom151 = (raw) => {
 
 const createSyntheticMobileTestNumber = () => {
   const suffix = String(Math.floor(Math.random() * 10000000)).padStart(7, "0");
-  // TEST prefix deliberately makes this an identifier, not a dialable phone number.
-  return "TEST-+49151" + suffix;
+  return "+49151" + suffix; // a [TEST-] a — vorheriges sichtbares Präfix
 };
 
 export function initializeMobileNumberIntelligence() {
@@ -39,7 +38,7 @@ export function initializeMobileNumberIntelligence() {
         row.append(label, number);
         results.append(row);
       }
-      feedback.textContent = quantity + " synthetic test identifier(s) generated. TEST-prefixed values are not phone numbers and have no WhatsApp links.";
+      feedback.textContent = quantity + " simulated test value(s) generated. These values are for display only and have no WhatsApp links.";
       return;
     }
 
